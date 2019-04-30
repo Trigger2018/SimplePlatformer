@@ -27,28 +27,24 @@ public class ShootWeapons : MonoBehaviour {
 
 	public void ShootProjectile()
 	{
-		//Vector3 target = new Vector3(0f,0f,0f);
-		//target=camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.nearClipPlane));
-		/* Vector3 cursorPosition = Input.mousePosition;
-            cursorPosition.z = 2.0f;       // we want 2m away from the camera position
-            this.transform.position = Camera.main.ScreenToWorldPoint(cursorPosition); */
-Debug.Log("object location " +Camera.main.WorldToScreenPoint(transform.position));
-Debug.Log("Mouse location "+Input.mousePosition );
-		Vector3 dir =  Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-		//Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+		//Rotate Laser
+		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		angle =   Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		barrel.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+		//Set laser endpoint
+		dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		dir.z =0f;
 		lzrSight.SetEnd(dir);
-		Debug.Log("the mouse coords:" + dir.ToString());
-		Debug.Log("stop point: "+lzrSight.stopPoint);
-		if(Input.GetMouseButtonDown(1))
+		
+		//Toggle Laser
+		if(Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Z))
 		{
 			
 			lzrSight.ToggleLaser();
 		}
 
-
+		//Shoot projectile
 		if(Input.GetMouseButtonDown(0))
 		{
 			dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);

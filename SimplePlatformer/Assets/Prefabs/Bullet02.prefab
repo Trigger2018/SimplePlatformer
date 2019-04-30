@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 58495405895385404}
   - component: {fileID: 82880928624615250}
   m_Layer: 0
-  m_Name: Bullet01
+  m_Name: Bullet02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79e7020a6b0144d9860b28b7cf4836d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBullet: 1
   movementSpeed: 14
   bulletDamage: 1
   theRB2D: {fileID: 0}
@@ -209,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bd59bf2e866ed4529ae645637eb9c11d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveBullet : MonoBehaviour {
-
+	public bool enemyBullet;
 	public float movementSpeed;
+	public int bulletDamage=1;
 	public Rigidbody2D theRB2D;
+
+	public GameObject soundSpawn;
 	// Use this for initialization
 	void Start () {
 		theRB2D = GetComponent<Rigidbody2D>();
@@ -22,10 +25,19 @@ public class MoveBullet : MonoBehaviour {
     }
 	void OnTriggerEnter2D(Collider2D other)
     {
-		if(other.gameObject.tag != "Player" )
+		if(other.gameObject.tag == "Enemy"  && !enemyBullet)
 		{
+			
+			other.GetComponent<EnemyHealthController>().TakeDamage(bulletDamage);
+			Instantiate(soundSpawn, transform.position, transform.rotation);
 			Destroy(gameObject);
 		}
+		else if(other.gameObject.tag == "Player" && enemyBullet )
+		{
+			//Damage Player
+			Destroy(gameObject);
+		}
+		
     }
 
 }
